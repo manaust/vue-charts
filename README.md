@@ -1,10 +1,10 @@
-# Nuxt 3 Minimal Starter
+# The art of rendering a chart
 
-We recommend to look at the [documentation](https://v3.nuxtjs.org).
+Supplementary code for my [Belvue Meetup](https://www.meetup.com/nl-NL/belvue-be/events/281427070/) talk regarding a Vue-based approach for rendering D3 charts.
 
 ## Setup
 
-Make sure to install the dependencies
+Install the dependencies
 
 ```bash
 yarn install
@@ -15,15 +15,7 @@ yarn install
 Start the development server on http://localhost:3000
 
 ```bash
-yarn dev
+yarn dev -o
 ```
 
-## Production
-
-Build the application for production:
-
-```bash
-yarn build
-```
-
-Checkout the [deployment documentation](https://v3.nuxtjs.org/docs/deployment).
+Happy hacking!
