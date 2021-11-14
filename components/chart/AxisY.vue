@@ -10,10 +10,9 @@
     <g
       v-for="tick in yTicks"
       :key="tick"
-      :transform="`translate(0, ${yScale(tick) + 0.5})`"
-      opacity="1"
       text-anchor="end"
-      font-size="12"
+      font-size="10"
+      :transform="`translate(0, ${yScale(tick) + 0.5})`"
     >
       <line stroke="currentColor" :x1="-ticks" :x2="1" />
 

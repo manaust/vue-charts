@@ -7,13 +7,10 @@
       } V ${ticks}`"
     />
 
-    <text>{{ xTicks }}</text>
-
     <g
       v-for="tick in xTicks"
       :key="tick"
-      font-size="12"
-      opacity="1"
+      font-size="10"
       :transform="`translate(${margin.left + 0.5 + xScale(tick)}, 0)`"
     >
       <line stroke="currentColor" :y1="ticks" :y2="1" />

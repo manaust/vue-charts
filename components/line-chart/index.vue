@@ -12,11 +12,11 @@
       >
         <g v-if="chartConfig.showAxes" style="color: #7e84cb">
           <ChartAxisX
-            :transform="`translate(${0 - chartConfig.margin.left}, ${height})`"
             :width="fullWidth"
             :xScale="x"
             :ticks="6"
             :margin="chartConfig.margin"
+            :transform="`translate(${0 - chartConfig.margin.left}, ${height})`"
           />
 
           <ChartAxisY

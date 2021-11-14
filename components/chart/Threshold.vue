@@ -1,5 +1,5 @@
 <template>
-  <g :style="`color: ${color}`" class="text-gray-500">
+  <g class="text-gray-300">
     <line
       class="stroke-current stroke-1"
       style="stroke-dasharray: 3"
@@ -24,7 +24,6 @@
 export default {
   props: {
     label: String,
-    color: String,
     width: {
       type: Number,
       required: true,
