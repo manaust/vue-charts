@@ -7,6 +7,7 @@
       :style="`color: ${lineColor(item.values)}`"
     >
       <span class="rounded-full inline-block h-1 w-4 mr-2 bg-current" />
+
       {{ item.meta.name }}
     </div>
   </div>

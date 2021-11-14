@@ -22,14 +22,15 @@ import {
 export default {
   setup() {
     const trend = ref([]);
-    // Wait for element to be added to DOM
+
+    // Wait for elements to be added to DOM
     onBeforeMount(() => {
       // set the dimensions and margins of the graph
       const margin = { top: 10, right: 30, bottom: 30, left: 60 };
       const width = 800 - margin.left - margin.right;
       const height = 400 - margin.top - margin.bottom;
 
-      // append the svg object to the body of the page
+      // Append the svg object to the body of the page
       const svg = select("#my_dataviz")
         .append("svg")
         .attr(
@@ -41,7 +42,7 @@ export default {
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-      //Read the data
+      // Read the data
       csv(
         "https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/3_TwoNumOrdered_comma.csv",
 
@@ -51,6 +52,7 @@ export default {
         // Now I can use this dataset:
         (data) => {
           trend.value = extent(data, (d) => d.value);
+
           // Add X axis --> it is a date format
           const x = scaleTime()
             .domain(extent(data, (d) => d.date))

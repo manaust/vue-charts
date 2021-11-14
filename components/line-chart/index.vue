@@ -1,46 +1,52 @@
 <template>
-  <ChartLegend class="mb-8" :dataset="dataset" v-if="chartConfig.showLegend" />
+  <div>
+    <ChartLegend
+      v-if="chartConfig.showLegend"
+      class="mb-8"
+      :dataset="dataset"
+    />
 
-  <svg :viewBox="`0 0 ${fullWidth} ${fullHeight}`">
-    <g
-      :transform="`translate(${chartConfig.margin.left}, ${chartConfig.margin.top})`"
-    >
-      <g v-if="chartConfig.showAxes" style="color: #7e84cb">
-        <ChartAxisX
-          :transform="`translate(${0 - chartConfig.margin.left}, ${height})`"
-          :width="fullWidth"
-          :xScale="x"
-          :ticks="5"
-          :margin="chartConfig.margin"
+    <svg :viewBox="`0 0 ${fullWidth} ${fullHeight}`">
+      <g
+        :transform="`translate(${chartConfig.margin.left}, ${chartConfig.margin.top})`"
+      >
+        <g v-if="chartConfig.showAxes" style="color: #7e84cb">
+          <ChartAxisX
+            :transform="`translate(${0 - chartConfig.margin.left}, ${height})`"
+            :width="fullWidth"
+            :xScale="x"
+            :ticks="6"
+            :margin="chartConfig.margin"
+          />
+
+          <ChartAxisY
+            :height="fullHeight"
+            :yScale="y"
+            :ticks="5"
+            :margin="chartConfig.margin"
+          />
+        </g>
+
+        <ChartLine
+          v-for="line in dataset"
+          :key="line.meta.name"
+          :name="line.meta.ticker"
+          :values="line.values"
+          :x="x"
+          :y="y"
         />
 
-        <ChartAxisY
-          :height="fullHeight"
-          :yScale="y"
-          :ticks="5"
-          :margin="chartConfig.margin"
+        <ChartThreshold
+          v-for="threshold in thresholds"
+          :key="threshold.label"
+          :label="threshold.label"
+          :color="threshold.color"
+          :offset="y(threshold.offset)"
+          :width="width"
         />
       </g>
-
-      <ChartLine
-        v-for="line in dataset"
-        :key="line.meta.name"
-        :name="line.meta.ticker"
-        :values="line.values"
-        :x="x"
-        :y="y"
-      />
-
-      <ChartThreshold
-        v-for="threshold in thresholds"
-        :key="threshold.label"
-        :label="threshold.label"
-        :color="threshold.color"
-        :offset="y(threshold.offset)"
-        :width="width"
-      />
-    </g>
-  </svg>
+    </svg>
+  </div>
 </template>
 
 <script>

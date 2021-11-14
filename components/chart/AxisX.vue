@@ -14,20 +14,18 @@
       :key="tick"
       font-size="12"
       opacity="1"
-      :transform="`translate(${xScale(tick)}, 0)`"
+      :transform="`translate(${margin.left + 0.5 + xScale(tick)}, 0)`"
     >
       <line stroke="currentColor" :y1="ticks" :y2="1" />
 
       <text fill="currentColor" y="9" dy="0.71em">
-        {{ formatDateTick(tick) }}
+        {{ tick.getFullYear() }}
       </text>
     </g>
   </g>
 </template>
 
 <script>
-import { formatDateTick } from "@/utils/chartUtils";
-
 export default {
   props: {
     width: {
@@ -49,7 +47,6 @@ export default {
 
     return {
       xTicks,
-      formatDateTick,
     };
   },
 };
