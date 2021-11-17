@@ -17,11 +17,12 @@ import useApi from "@/composables/useApi";
 
 export default {
   setup() {
-    const { data, isFinished } = useApi();
+    // Mocked data
+    const { dataset, isFinished } = useApi(true);
 
-    // Combine dataset values
+    // Combine dataset values to extract min-max values
     const flattenedData = computed(() =>
-      data.value.map((item) => item.values).flat()
+      dataset.value.map((item) => item.values).flat()
     );
 
     const ath = computed(() => max(flattenedData.value, (d) => d.value));
@@ -43,18 +44,8 @@ export default {
       },
     };
 
-    // Convert x value to Date
-    const dataset = computed(() => {
-      return data.value.map((dataItem) => ({
-        ...dataItem,
-        values: dataItem.values.map((value) => ({
-          ...value,
-          date: new Date(value.date),
-        })),
-      }));
-    });
-
     return {
+      flattenedData,
       dataset,
       isFinished,
       thresholds,

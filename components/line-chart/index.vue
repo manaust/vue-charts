@@ -10,23 +10,27 @@
       <g
         :transform="`translate(${chartConfig.margin.left}, ${chartConfig.margin.top})`"
       >
+        <!-- Axes -->
         <g v-if="chartConfig.showAxes" style="color: #7e84cb">
+          <!-- X Axis  -->
           <ChartAxisX
+            :transform="`translate(${0 - chartConfig.margin.left}, ${height})`"
             :width="fullWidth"
+            :margin="chartConfig.margin"
             :xScale="x"
             :ticks="6"
-            :margin="chartConfig.margin"
-            :transform="`translate(${0 - chartConfig.margin.left}, ${height})`"
           />
 
+          <!-- Y Axis -->
           <ChartAxisY
             :height="fullHeight"
+            :margin="chartConfig.margin"
             :yScale="y"
             :ticks="5"
-            :margin="chartConfig.margin"
           />
         </g>
 
+        <!-- Lines -->
         <ChartLine
           v-for="line in dataset"
           :key="line.meta.name"
@@ -36,13 +40,13 @@
           :y="y"
         />
 
+        <!-- Thresholds -->
         <ChartThreshold
           v-for="threshold in thresholds"
           :key="threshold.label"
-          :label="threshold.label"
-          :color="threshold.color"
-          :offset="y(threshold.offset)"
           :width="width"
+          :label="threshold.label"
+          :offset="y(threshold.offset)"
         />
       </g>
     </svg>
@@ -73,6 +77,7 @@ export default {
         props.chartConfig.margin.left +
         props.chartConfig.margin.right
     );
+
     const fullHeight = computed(
       () =>
         props.height +
@@ -80,7 +85,7 @@ export default {
         props.chartConfig.margin.bottom
     );
 
-    // Combine data to extract min-max values for axes
+    // Combine dataset values to extract min-max values
     const flattenedData = computed(() =>
       props.dataset.map((item) => item.values).flat()
     );

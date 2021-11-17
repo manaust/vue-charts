@@ -1,5 +1,10 @@
 <template>
-  <ChartTrend class="mb-8" v-if="trend.length" :trend="trend" />
+  <ChartTrend
+    class="mb-8"
+    v-if="trend.length"
+    :start="trend[0]"
+    :end="trend[1]"
+  />
 
   <div id="my_dataviz" style="color: #7e84cb" />
 </template>
@@ -25,7 +30,7 @@ export default {
 
     // Wait for elements to be added to DOM
     onBeforeMount(() => {
-      // set the dimensions and margins of the graph
+      // Set the dimensions and margins of the graph
       const margin = { top: 10, right: 30, bottom: 30, left: 60 };
       const width = 800 - margin.left - margin.right;
       const height = 400 - margin.top - margin.bottom;

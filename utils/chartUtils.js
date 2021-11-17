@@ -7,7 +7,7 @@ export const lineColor = scaleOrdinal().range([
 ]);
 
 export const fillColor = scaleOrdinal().range([
-  "#FFA500",
-  "#36CFE3",
-  "#612EED",
+  "orange",
+  "mediumturquoise",
+  "blueviolet",
 ]);

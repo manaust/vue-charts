@@ -1,5 +1,6 @@
 <template>
   <g :style="`color: ${lineColor(values)}`">
+    <!-- Gradient definition -->
     <defs>
       <linearGradient :id="name" x1="0%" x2="0%" y1="0%" y2="100%">
         <stop
@@ -13,7 +14,9 @@
       </linearGradient>
     </defs>
 
+    <!-- Background fill -->
     <path :fill="`url(#${name})`" :d="fill(values)" />
+    <!-- Stroke -->
     <path fill="none" class="stroke-current stroke-2" :d="stroke(values)" />
   </g>
 </template>
@@ -21,7 +24,7 @@
 <script>
 import { area, line } from "d3";
 
-import { lineColor, fillColor } from "@/utils/chartUtils";
+import { fillColor, lineColor } from "@/utils/chartUtils";
 
 export default {
   props: {
